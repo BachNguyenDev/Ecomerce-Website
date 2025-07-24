@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { useSelector } from 'react-redux';
-import NavBar from "../Layout/NavBar";
+import NavBar from "../../Layout/NavBar";
 
 const Checkout = () => {
   const cart = useSelector((state) => state.cart);

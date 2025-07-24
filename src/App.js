@@ -6,10 +6,10 @@ import {
 } from "react-router-dom";
 import ShopPage from "./Pages/ShopPage/ShopPage";
 import Home from "./Pages/Home";
-import Cart from "./Pages/Cart";
-import Login from "./Pages/Login";
-import Checkout from "./Pages/Checkout";
-import Register from "./Pages/Register";
+import Cart from "./Pages/Cart/Cart";
+import Login from "./Pages/Auth/Login";
+import Checkout from "./Pages/Cart/Checkout";
+import Register from "./Pages/Auth/Register";
 import DetailPage from "./Pages/DetailPage";
 function App() {
   return (
@@ -19,7 +19,7 @@ function App() {
 			<Route path="/shop" element={<ShopPage/>}/>
       <Route path="/cart" element={<Cart/>}/>
       <Route path="/login" element={<Login/>}/>
-      <Route path="/checkout" element={<Checkout/>}/>
+      <Route path="/home/cart/checkout" element={<Checkout/>}/>
       <Route path="/register" element={<Register/>}/>
       <Route path="/product/:productId" element={<DetailPage/>}/>
 		  </Routes>

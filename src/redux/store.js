@@ -7,7 +7,7 @@ const store = configureStore({
   reducer: {
     popup: popupReducer,
     auth: authReducer,
-    cart: cartReducer
+    cart: cartReducer,
   },
 });
 

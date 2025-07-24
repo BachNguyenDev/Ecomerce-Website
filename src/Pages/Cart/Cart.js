@@ -1,6 +1,6 @@
 import React from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { UPDATE_CART, DELETE_CART } from "../redux/cartSlice";
+import { UPDATE_CART, DELETE_CART } from "../../redux/cartSlice";
 import { useNavigate } from "react-router-dom";
 const Cart = () => {
 
@@ -145,7 +145,7 @@ const Cart = () => {
                     {/* Navigation buttons */}
                     <div style={{ display: "flex", justifyContent: "space-between", marginTop: 30 }}>
                         <button className="btn btn-outline-dark" onClick={() => navigate("/shop")}>&#8592; Continue shopping</button>
-                        <button className="btn btn-outline-dark" onClick={() => navigate("/checkout")}>Proceed to checkout &#8594;</button>
+                        <button className="btn btn-outline-dark" onClick={() => navigate("/home/cart/checkout")}>Proceed to checkout &#8594;</button>
                     </div>
                 </div>
 

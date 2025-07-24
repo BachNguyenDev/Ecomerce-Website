@@ -9,6 +9,11 @@ const initialState = {
 const parsePrice = (price) =>
   typeof price === "string" ? Number(price.replace(/,/g, "")) : Number(price);
 
+const recalculateCart = (state) => {
+  state.totalQuantity = state.items.reduce((total, item) => total + item.quantity, 0);
+  state.totalAmount = state.items.reduce((total, item) => total + item.quantity * item.price, 0);
+};
+
 const cartSlice = createSlice({
   name: 'cart',
   initialState,
@@ -19,23 +24,21 @@ const cartSlice = createSlice({
       const existingItem = state.items.find(item => item.id === newItem.id);
       
       if (existingItem) {
-        existingItem.quantity += 1;
+        // Nếu đã có, chỉ tăng số lượng
+        existingItem.quantity++;
         existingItem.totalPrice = existingItem.quantity * price;
-      } 
-      else {
+      } else {
+        // Nếu chưa có, thêm mới
         state.items.push({
           ...newItem,
-          price, // Lưu lại dạng số
+          price, 
           quantity: 1,
           totalPrice: price,
         });
       }
       
-      state.totalQuantity += 1;
-      state.totalAmount = state.items.reduce(
-        (total, item) => total + item.totalPrice,
-        0
-      );
+      
+      recalculateCart(state);
     },
     
     UPDATE_CART: (state, action) => {
@@ -43,36 +46,19 @@ const cartSlice = createSlice({
       const item = state.items.find(item => item.id === id);
       
       if (item) {
-        const quantityDifference = quantity - item.quantity;
         item.quantity = quantity;
         item.totalPrice = item.quantity * item.price;
         
-        
-        state.totalQuantity += quantityDifference;
-        state.totalAmount = state.items.reduce(
-          (total, item) => total + item.totalPrice,
-          0
-        );
+        recalculateCart(state);
       }
     },
     
     DELETE_CART: (state, action) => {
       const id = action.payload;
-      const item = state.items.find(item => item.id === id);
+      state.items = state.items.filter(item => item.id !== id);
       
-      if (item) {
-        // Giảm tổng số lượng
-        state.totalQuantity -= item.quantity;
-        
-        // Xóa item khỏi cart
-        state.items = state.items.filter(item => item.id !== id);
-        
-        // Cập nhật tổng tiền
-        state.totalAmount = state.items.reduce(
-          (total, item) => total + item.totalPrice,
-          0
-        );
-      }
+    
+      recalculateCart(state);
     },
   },
 });

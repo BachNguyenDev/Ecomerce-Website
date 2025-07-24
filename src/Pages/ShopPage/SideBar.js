@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 
 const Sidebar = ({ onSelectCategory }) => {
-  const [selectedCategory, setSelectedCategory] = useState("ALL");
+  const [selectedCategory, setSelectedCategory] = useState("");
 
   const handleSelect = (category) => {
     setSelectedCategory(category);
@@ -39,7 +39,7 @@ const Sidebar = ({ onSelectCategory }) => {
             {cat.subcategories.map((sub,index) => (
               <li key={index}>
                 <button
-                  onClick={() => handleSelect(sub)} // tại sao lại re-render ?
+                  onClick={() => handleSelect(sub)} 
                   style={{textTransform: "uppercase",background:"none", border:"none"}}
                   className={`text-sm w-full text-left py-1 px-2 rounded hover:bg-gray-200 transition ${
                     selectedCategory === sub

@@ -6,7 +6,7 @@ import Footer from "../../Layout/Footer";
 import ProductList from "./ProductList";
 const ShopPage = () => {
   const [products, setProducts] = useState([]);
-  const [selectedCategory, setSelectedCategory] = useState("ALL");
+  const [selectedCategory, setSelectedCategory] = useState("All");
 
   useEffect(() => {
     const fetchProducts = async () => {

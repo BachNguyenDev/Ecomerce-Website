@@ -1,11 +1,11 @@
 import React, { useState } from "react";
 
 const Sidebar = ({ onSelectCategory }) => {
-  const [selectedCategory, setSelectedCategory] = useState("");
+  const [selectedCategory, setSelectedCategory] = useState("All");
 
   const handleSelect = (category) => {
     setSelectedCategory(category);
-    onSelectCategory(category); // truyền lên ShopPage
+    onSelectCategory(category); 
   };
   const categories = [
     {
@@ -25,7 +25,7 @@ const Sidebar = ({ onSelectCategory }) => {
       subcategories: ["Mouse", "Keyboard", "Other"],
     },
   ];
-
+  
   return (
     <div className="w-64 p-4 bg-white shadow-sm border rounded-md">
       <h2 className="font-bold text-lg mb-4">CATEGORIES</h2>

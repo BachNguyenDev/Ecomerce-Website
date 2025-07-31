@@ -24,11 +24,9 @@ const cartSlice = createSlice({
       const existingItem = state.items.find(item => item.id === newItem.id);
       
       if (existingItem) {
-        // Nếu đã có, chỉ tăng số lượng
-        existingItem.quantity++;
-        existingItem.totalPrice = existingItem.quantity * price;
+        alert("Sản phẩm đã tồn tại trong giỏ hàng")
       } else {
-        // Nếu chưa có, thêm mới
+        alert("Sản phẩm được thêm thành công")
         state.items.push({
           ...newItem,
           price, 
